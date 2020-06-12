@@ -78,7 +78,7 @@ def main(draw=False):
     test_set = torchvision.datasets.MNIST(root=str(data_path), train=False, download=True, transform=transform)
     test_loader = torch.utils.data.DataLoader(test_set, batch_size=batch_size, shuffle=False)
     model = NADE(input_dim=784, hidden_dim=500).to(device)
-    loss_function = nn.KLDivLoss(reduction="sum")
+    loss_function = nn.BCELoss(reduction="sum")
     optimizer = optim.Adam(model.parameters())
     scheduler = optim.lr_scheduler.StepLR(optimizer, 15, gamma=0.1)
     
