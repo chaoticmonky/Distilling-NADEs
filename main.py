@@ -42,7 +42,8 @@ def test(test_loader, loss_function, model, device):
             loss = loss_function(x_hat, inputs)
             total_loss += loss.item()
             
-        print(f"\t[Test Result] loss: {total_loss/len(test_loader.dataset):.4f}")
+        print("[Test Result] loss:", total_loss/len(test_loader.dataset))
+        # print(f"\t[Test Result] loss: {total_loss/len(test_loader.dataset):.4f}")
     return total_loss/len(test_loader.dataset)
         
 def draw_sampling(model):
@@ -52,7 +53,7 @@ def draw_sampling(model):
     for x, ax in zip([x_hat, xs], axes):
         ax.matshow(x.cpu().detach().squeeze().view(28, 28).numpy())
         ax.axis('off')
-    plt.title(f"\t[Random Sampling] NLL loss: {nll_loss:.4f}", fontdict={"fontsize": 16})
+    plt.title("[Random Sampling] NLL loss:", fontdict={"fontsize": 16})
     plt.show()
     
 def non_decreasing(L):
@@ -86,7 +87,7 @@ def main(draw=False):
     best_loss = 99999999
     wait = 0
     for step in range(n_step):
-        print(f"Running Step: [{step+1}/{n_step}]")
+        print("Running Step:", step+1/n_step)
         train_loss = train(train_loader, loss_function, optimizer, model, device)
         test_loss = test(test_loader, loss_function, model, device)
         scheduler.step()
@@ -100,11 +101,13 @@ def main(draw=False):
         if test_loss <= best_loss:
             best_loss = test_loss
             torch.save(model.state_dict(), "nade-binary.pt")
-            print(f"\t[Model Saved]")
+            print("[Model Saved]")
+            # print(f"\t[Model Saved]")
             if (step >= 2) and (wait <= 3) and (non_decreasing(test_losses[-3:])):
                 wait += 1
             elif wait > 3:
-                print(f"[Early Stopped]")
+                print("[Early Stopped]")
+                # print(f"[Early Stopped]")
                 break
             else:
                 continue
