@@ -4,7 +4,7 @@ import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
 from pathlib import Path
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from model import NADE
 
 def train(train_loader, loss_function, optimizer, model, device):
@@ -47,14 +47,14 @@ def test(test_loader, loss_function, model, device):
     return total_loss/len(test_loader.dataset)
         
 def draw_sampling(model):
-    model.eval()
-    x_hat, xs, nll_loss = model.sample(n=1, only_prob=True)
-    fig, axes = plt.subplots(1, 2)
-    for x, ax in zip([x_hat, xs], axes):
-        ax.matshow(x.cpu().detach().squeeze().view(28, 28).numpy())
-        ax.axis('off')
-    plt.title("[Random Sampling] NLL loss:", fontdict={"fontsize": 16})
-    plt.show()
+    # model.eval()
+    # x_hat, xs, nll_loss = model.sample(n=1, only_prob=True)
+    # fig, axes = plt.subplots(1, 2)
+    # for x, ax in zip([x_hat, xs], axes):
+    #     ax.matshow(x.cpu().detach().squeeze().view(28, 28).numpy())
+    #     ax.axis('off')
+    # plt.title("[Random Sampling] NLL loss:", fontdict={"fontsize": 16})
+    # plt.show()
     
 def non_decreasing(L):
     """for early stopping"""
