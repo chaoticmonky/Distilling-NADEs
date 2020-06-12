@@ -26,8 +26,8 @@ def train(train_loader, loss_function, optimizer, model, device):
         # record
         total_loss += loss.item()
         
-        if i % 100 == 0:
-            print(f"\t[{i*imgs.size(0)/len(train_loader.dataset)*100:.2f}%] loss: {loss/imgs.size(0):.4f}")
+        # if i % 100 == 0:
+        #     print(f"\t[{i*imgs.size(0)/len(train_loader.dataset)*100:.2f}%] loss: {loss/imgs.size(0):.4f}")
     return total_loss
 
 def test(test_loader, loss_function, model, device):
