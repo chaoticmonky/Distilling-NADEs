@@ -47,6 +47,7 @@ def test(test_loader, loss_function, model, device):
     return total_loss/len(test_loader.dataset)
         
 def draw_sampling(model):
+    return
     # model.eval()
     # x_hat, xs, nll_loss = model.sample(n=1, only_prob=True)
     # fig, axes = plt.subplots(1, 2)
