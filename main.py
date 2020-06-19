@@ -79,7 +79,7 @@ def main(draw=False):
     test_loader = torch.utils.data.DataLoader(test_set, batch_size=batch_size, shuffle=False)
     model = NADE(input_dim=784, hidden_dim=500).to(device)
     loss_function = nn.BCELoss(reduction="sum")
-    optimizer = optim.Adam(model.parameters())
+    optimizer = optim.Adam(model.parameters(), lr = 1e-2)
     scheduler = optim.lr_scheduler.StepLR(optimizer, 15, gamma=0.1)
     
     # start main
