@@ -27,7 +27,7 @@ def train(train_loader, loss_function, optimizer, model, device):
         total_loss += loss.item()
         
         if i % 100 == 0:
-            print(i*imgs.size(0)/len(train_loader.dataset)*100, 'loss: ', loss/imgs.size(0))
+            print(i*imgs.size(0)/len(train_loader.dataset)*100, "%", 'loss: ', loss.item()/imgs.size(0))
             # print(f"\t[{i*imgs.size(0)/len(train_loader.dataset)*100:.2f}%] loss: {loss/imgs.size(0):.4f}")
     return total_loss
 
@@ -88,7 +88,7 @@ def main(draw=False):
     best_loss = 99999999
     wait = 0
     for step in range(n_step):
-        print("Running Step:", step+1/n_step)
+        print("Running Step: [", step+1, "/", n_step, "]")
         train_loss = train(train_loader, loss_function, optimizer, model, device)
         test_loss = test(test_loader, loss_function, model, device)
         scheduler.step()
