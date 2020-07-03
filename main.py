@@ -101,7 +101,8 @@ def main(draw=False):
 
         if test_loss <= best_loss:
             best_loss = test_loss
-            torch.save(model.state_dict(), "nade-binary.pt")
+            torch.save(model, "nade-binary.pt")
+            # torch.save(model.state_dict(), "nade-binary.pt")
             print("[Model Saved]")
             # print(f"\t[Model Saved]")
             if (step >= 2) and (wait <= 3) and (non_decreasing(test_losses[-3:])):
