@@ -41,7 +41,7 @@ class NADE(nn.Module):
         xs = []
         for d in range(self.D): #for the input dimensions
             # h_d: (B, H)
-            h_d = torch.sigmoid(a_d) #calculate the hidden ;ayer
+            h_d = torch.sigmoid(a_d) #calculate the hidden layer
             # p_hat: (B, H) x (H, 1) + (B, 1) = (B, 1) [alpha*h_i +bias]
             # the V parameter is of dim (B,H)
             p_hat = torch.sigmoid(h_d.mm(self.params["V"][d:d+1, :].t() + self.params["b"][d:d+1]))
@@ -62,6 +62,7 @@ class NADE(nn.Module):
         if sample:
             xs = torch.cat(xs, 1)
             return x_hat, xs
+        # print('in cal prob', x_hat)
         return x_hat
     
     def _cal_nll(self, x_hat, x):
